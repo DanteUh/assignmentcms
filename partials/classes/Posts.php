@@ -11,9 +11,6 @@ include '../database.php';
 class Posts
 {
 
-	//lagt till början till konstruktor för ny post 30/4
-
-
 
   	private $pdo;
 
@@ -21,35 +18,51 @@ class Posts
   	{
     	$this->pdo = $pdo;
   	}
- 	
-
-	/*public function get_all_from($posts){
-
-		include 'database.php';
-
-		$statement = $this->pdo->prepare("
-      	SELECT * FROM $posts");
-    	$statement->execute();
-    	return $statement->fetchAll();
-    	echo $statement;
-	}*/
 
 
-	public function add_post($post_title, $post_content){
-		$statement = $pdo->prepare("INSERT INTO posts (post_title, post_content)
-      	VALUES(:post_title, :post_content)");
-      	$statement->bindParam(':post_title', $post_title);
-      	$statement->bindParam(':post_content', $post_content);
-      	$statement->execute();
-      	echo "New record created successfully";
-	}
+	//Funktion som skriver ut titel och innehåll på varje skapade bloggpost
+	public function printAllPosts()
+  	{
+	  	//Prepare SQL query
+	    $statement = $this->pdo->prepare("SELECT post_title, post_content FROM posts");
+	    //Execute statement, fetch data
+	    $statement->execute();
 
-	public function print_post(){
-		      	
-		return "Post title: $this->post_title <br>
-				Post content: $this->post_content";
-	}
-	
+	    $posts = $statement->fetchAll();
+    
+	    foreach ($posts as $row){
+	    	echo "<p>" . $row["post_title"] . "</p><br>";
+			echo "<p>" . $row["post_content"] . "</p><br>";
+	    }
+
+  	}
+
+  	//Funktion som lägger till en ny post från form
+  	public function addPost()
+  	{
+	    $statement = $this->pdo->prepare("INSERT INTO posts (post_title, post_content)
+	    VALUES (:post_title, :post_content)");
+	    
+	    $statement->execute([
+	      ':post_title' => $_POST['post_title'],
+	      ':post_content' => $_POST['post_content']
+	    ]);
+  	}
+
+
+  	//Funktion som ändrar en existerande post
+  	public function editPost()
+  	{
+	    $statement = $this->pdo->prepare("UPDATE posts SET (post_title, post_content)
+	    VALUES (:post_title, :post_content)");
+
+	    $statement->execute([
+	      ':post_title' => $_POST['post_title'],
+	      ':post_content' => $_POST['post_content']
+	    ]);
+  	}
+
+
 }
 
 

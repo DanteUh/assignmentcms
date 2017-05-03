@@ -8,3 +8,4 @@
 		Content: <input type="text" name="post_content"><br>
 				<input type="submit">
 	</form>
+	
