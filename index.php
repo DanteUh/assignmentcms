@@ -1,5 +1,9 @@
-<?php include 'partials/header.php'; ?>
+<?php
 
+include 'app/database.php';
 
+$statement = $pdo->prepare("SELECT * FROM posts");
+$statement->execute();
+$posts = $statement->fetchAll();
 
-<?php include 'partials/footer.php'; ?>
+include VIEW_ROOT . '/home.php';
