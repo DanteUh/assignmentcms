@@ -1,5 +1,7 @@
-<?php include 'partials/view/header.php'; ?>
+<?php
 
+include 'app/database.php';
 
-
-<?php include 'partials/view/footer.php'; ?>
+$statement = $pdo->prepare("SELECT * FROM posts");
+$statement->execute();
+$posts = $statement->fetchAll();
