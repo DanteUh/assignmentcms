@@ -13,7 +13,7 @@
         Last updated <?php echo $data['updated_time']->format('jS M Y h:m a'); ?>
       <?php endif; ?>
     </p>
-
   <?php endif; ?>
+  <a href="<?php echo BASE_URL; ?>/edit_post.php?id=<?php echo $data['post_id']; ?>">Edit post</a>
 
 <?php require VIEW_ROOT . '/templates/footer.php'; ?>

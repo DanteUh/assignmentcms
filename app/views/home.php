@@ -1,9 +1,8 @@
 <!-- I view visas alla posts utåt som hämtas från index.php -->
 <?php require VIEW_ROOT . '/templates/header.php'; ?>
 
-
   <a href="<?PHP echo BASE_URL; ?>/new_post.php">Lägg till ny post</a>
-  <a href="<?PHP echo BASE_URL; ?>/reg_user.php">Regga dig</a>
+  <a href="<?PHP echo BASE_URL; ?>/reg_user.php">Registrera ny användare</a>
   <!-- För att kolla om det finns en post på den pagen -->
   <?php if(empty($posts)): ?>
     <p>Sorry, no pages at the moment.</p>
@@ -17,7 +16,5 @@
       <?php endforeach; ?>
     </ul>
   <?php endif; ?>
-
-
 
 <?php require VIEW_ROOT . '/templates/footer.php'; ?>
