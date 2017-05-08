@@ -12,13 +12,14 @@ class Posts
   public function addPost()
   {
     $statement = $this->pdo->prepare("
-    INSERT INTO posts (post_title, post_content)
-    VALUES (:post_title, :post_content)
+    INSERT INTO posts (post_title, post_content, user_id)
+    VALUES (:post_title, :post_content, :user_id)
     ");
 
     $statement->execute([
       ':post_title' => $_POST['post_title'],
-      ':post_content' => $_POST['post_content']
+      ':post_content' => $_POST['post_content'],
+      ':user_id' => $_SESSION['user_id']
     ]);
   }
   public function updatePost()
