@@ -1,8 +1,6 @@
 <?php session_start(); ?>
 <?php
 
-<?php
-
 include 'app/database.php';
 //Det är är själva requesten sker av page.
 
