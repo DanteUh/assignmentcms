@@ -1,14 +1,7 @@
 
-<!-- I views/home visas alla posts utåt som hämtas till index.php -->
-<?php require VIEW_ROOT . '/templates/header.php'; ?>
+  <?php require VIEW_ROOT . '/templates/header.php'; ?>
 
 
-  <!--Om en användare är inloggad visas alla posts på startsidan -->
-  <?php if(isset($_SESSION['uname'])): ?>
-    <!--Meddelande om att man är inloggad visas-->
-    <?php if(!empty($msg_log)): ?>
-      <p class="text-center"><?php echo $msg_log ?></p>
-    <?php endif; ?>
 
     <a href="<?PHP echo BASE_URL; ?>/new_post.php">Lägg till ny post</a><br/>
 
@@ -28,11 +21,18 @@
     </ul>
   <?php endif; ?>
 
-  <!--Logga ut-länk -->
-  <p class="text-center"><a href="<?PHP echo BASE_URL; ?>/logout_user.php">Logga ut</a></p>
+
+   <!--Om en användare är inloggad visas alla posts på startsidan -->
+  <?php if(isset($_SESSION['uname'])): ?>
+    <!--Meddelande om att man är inloggad visas-->
+    <?php if(!empty($msg_log)): ?>
+      <p class="text-center"><?php echo $msg_log ?></p>
+        <!--Logga ut-länk -->
+        <p class="text-center"><a href="<?PHP echo BASE_URL; ?>/logout_user.php">Logga ut</a></p>
+    <?php endif; ?>
 
 
-<!--Om en användare inte är inloggad hänvisas man till att logga in eller registrera sig-->
+  <!--Om en användare inte är inloggad hänvisas man till att logga in eller registrera sig-->
   <?php else: ?>
 
     <!--Meddelande om att man är inloggad visas-->
