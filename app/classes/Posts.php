@@ -40,4 +40,19 @@ class Posts
 
     header('Location: /');
   }
+  public function deletePost()
+  {
+    $id = $_POST['post_id'];
+
+    $statement = $this->pdo->prepare("
+    DELETE FROM posts
+    WHERE post_id = :post_id
+    ");
+
+    $statement->execute([
+      'post_id' => $id
+    ]);
+
+    header('Location: /');
+  }
 }
