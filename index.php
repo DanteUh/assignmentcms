@@ -1,11 +1,14 @@
+<?php session_start(); ?>
 <!--Index sköter första requesten -->
-<?php
+<?php include 'app/database.php'; 
 
-include 'app/database.php';
 
 $statement = $pdo->prepare("SELECT * FROM posts");
 $statement->execute();
 $posts = $statement->fetchAll();
 
-//När vi har alla posts, skickar vi vidare dessa till home
-include VIEW_ROOT .  '/home.php';
+//När vi har alla posts, skickar vi vidare requesten  till home-php
+ include VIEW_ROOT .  '/home.php';
+
+
+ 

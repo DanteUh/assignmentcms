@@ -1,10 +1,12 @@
 <?php
 session_start();
 include 'database.php';
-include 'classes/Posts.php';
+include 'classes/Users.php';
 
 header('Location: /app/views/home.php');
 
-$post = new Posts($pdo);
-$post->addPost();
+$userLogin = new Users($pdo);
+$userLogin->login();
+
+
 

@@ -10,4 +10,4 @@
   </head>
   <body>
     <div class="wrapper">
-      <h2>Bloggisarna</h2>
+      <h2 class="text-center">Bloggisarna</h2>

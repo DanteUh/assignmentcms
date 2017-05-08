@@ -2,7 +2,7 @@
 <?php
 
 include 'app/database.php';
-//Det är är själva requesten sker av page. 
+//Det är här själva requesten sker av page. 
 var_dump($_GET['page']);
 if(empty($_GET['page'])){
   $post = false;
