@@ -54,8 +54,8 @@ class Users
 			 //Fetch what is matched with the input
 			 $results = $statement->fetch(PDO::FETCH_ASSOC);
 
-			 var_dump($results);
-			 var_dump(password_verify($_POST['password'], $results['password']));
+			//  var_dump($results);
+			//  var_dump(password_verify($_POST['password'], $results['password']));
 			 $msg_log = '';
 				 if(password_verify($_POST['password'], $results['password'])){
 
@@ -65,44 +65,18 @@ class Users
 
 					 $_SESSION['username'] = $results['username'];
 
+					 $_SESSION['admin'] = $results['role'];
+
 					 $msg_log = 'Hello' . $results['username'] . 'You successfully logged in';
 
+					 header('Location: /');
+
+				 } elseif(!password_verify($_POST['password'], $results['password'])) {
+					 header('Location: /login_user.php');
 				 }
 
-				 else {
-
-					 $msg_log = 'Sorry, those credentials do not match';
-				 }
 			 }
 
 	 }
 
-    /* EJ KLAR KOLLA VIDEO
-    public function login()
-    {
-      if(!empty($_POST['username']) && !empty($_POST['password'])):
-
-        $statement = $this->pdo->prepare('SELECT id,username,email,password FROM users WHERE email = :email');
-        $statement->bindParam(':email', $_POST['email']);
-        $statement->execute();
-        $results = $statement->fetch(PDO::FETCH_ASSOC);
-
-          if(count($results) > 0 && password_verify($_POST['password'], $results['password'])){
-
-            /*$_SESSION['id'] = $results['id'];
-            $msg = 'You successfully logged in';
-            header("Location: /");
-            die('trying it');
-
-          }
-          else{
-
-              die('Sorry, those credentials do not match');
-
-          }
-
-          endif;
-
-    }*/
-
-    }
+}

@@ -1,9 +1,15 @@
 <!-- I view visas alla posts utåt som hämtas från index.php -->
 <?php require VIEW_ROOT . '/templates/header.php'; ?>
 
+  <?php if(!isset($_SESSION['loggedin'])): ?>
+    <a href="<?PHP echo BASE_URL; ?>/login_user.php">Logga in</a>
+    <a href="<?PHP echo BASE_URL; ?>/reg_user.php">Registrera ny användare</a>
+  <?php else: ?>
+    <?php echo 'Hello ' . $_SESSION['username'] . '!</br>'; ?>
+    <a href="<?PHP echo BASE_URL; ?>/logout_user.php">Logga ut</a>
+    <a href="<?PHP echo BASE_URL; ?>/new_post.php">Lägg till ny post</a>
+  <?php endif; ?>
 
-  <a href="<?PHP echo BASE_URL; ?>/new_post.php">Lägg till ny post</a>
-  <a href="<?PHP echo BASE_URL; ?>/reg_user.php">Registrera ny användare</a>
   <!-- För att kolla om det finns en post på den pagen -->
   <?php if(empty($posts)): ?>
     <p>Sorry, no pages at the moment.</p>
