@@ -19,7 +19,7 @@
 
     <!-- Listar alla befintliga posts -->
     <ul>
-      <?php foreach($posts as $post): ?>
+      <?php foreach($posts as $post): ?> 
         <li>
           <!--Länkar till den post, vars post_id stämmer överens med den post som finns i databasen-->
           <a href="<?php echo BASE_URL; ?>/page.php?page=<?php echo $post['post_id']; ?>"><?php echo $post['post_title']; ?></a>

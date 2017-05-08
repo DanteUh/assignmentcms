@@ -3,6 +3,7 @@
 <?php require VIEW_ROOT . '/templates/header.php'; ?>
 
 
+
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-sm-12 col-md-8">
@@ -24,3 +25,4 @@
 
 
 <?php require VIEW_ROOT . '/templates/footer.php'; ?>
+

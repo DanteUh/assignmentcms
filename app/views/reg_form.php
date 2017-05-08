@@ -24,5 +24,4 @@
 </div>
 
 
-
 <?php require VIEW_ROOT . '/templates/footer.php'; ?>
