@@ -54,8 +54,8 @@ class Users
        //Fetch what is matched with the input
        $results = $statement->fetch(PDO::FETCH_ASSOC);
 
-       var_dump($results);
-       var_dump(password_verify($_POST['password'], $results['password']));
+      //  var_dump($results);
+      //  var_dump(password_verify($_POST['password'], $results['password']));
        $msg_log = '';
          if(password_verify($_POST['password'], $results['password'])){
 
@@ -65,17 +65,18 @@ class Users
 
            $_SESSION['username'] = $results['username'];
 
+           $_SESSION['admin'] = $results['role'];
+
            $msg_log = 'Hello' . $results['username'] . 'You successfully logged in';
 
+           header('Location: /');
+
+         } elseif(!password_verify($_POST['password'], $results['password'])) {
+           header('Location: /login_user.php');
          }
 
-         else {
-
-           $msg_log = 'Sorry, those credentials do not match';
-         }
        }
 
    }
 
-
-    }
+}
