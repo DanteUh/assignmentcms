@@ -3,11 +3,11 @@
 class Likes()
 {
     private $pdo;
-    
+
     public function __construct($pdo){
         $this->pdo = $pdo;
     }
-    
+
     //Mostly done I think. Made with help from video:
     // https://www.youtube.com/watch?v=PQMtLDxOQRk
     public function like_post()
@@ -34,19 +34,19 @@ class Likes()
             ]);
         }
     }
-    
+
     public function count_likes()
     {
         $statement = $this->pdo->prepare("
         SELECT posts.post_id, posts.title
         COUNT(likes.like_id) AS likes
         FROM posts
-        
+
         INNER JOIN likes
         ON posts.post_id = likes.post_id
-        
+
         GROUP BY posts.post_id");
-        
+
         $statement->execute();
     }
 }
