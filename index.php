@@ -4,6 +4,10 @@ session_start();
 
 
 include 'app/database.php';
+// include 'app/classes/Posts.php';
+
+// $posts = new Posts($pdo);
+// $posts->getAllPosts();
 
 $statement = $pdo->prepare("
 SELECT * FROM posts
