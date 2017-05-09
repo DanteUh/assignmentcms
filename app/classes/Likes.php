@@ -10,7 +10,7 @@ class Likes()
     
     //Mostly done I think. Made with help from video:
     // https://www.youtube.com/watch?v=PQMtLDxOQRk
-    public function like_post()
+    public static function like_post()
     {
         //If the button has type = post and has a post_id that exists
         //Then We can like something and send it to our database
@@ -35,7 +35,7 @@ class Likes()
         }
     }
     
-    public function count_likes()
+    public static function count_likes()
     {
         $statement = $this->pdo->prepare("
         SELECT posts.post_id, posts.title
@@ -50,3 +50,11 @@ class Likes()
         $statement->execute();
     }
 }
+
+//Test för att kunna komma åt funktionerna i klassen och få ut dess url:er när man kallar på dem. Oklart om det ens hjälper. 
+/*if(isset($_GET['type']) && method_exists('Likes', $_SESSION['user'])){
+    $like = new Likes();
+    $like->$_GET['post_id'](); 
+} else {
+    echo 'Function not found';
+}*/
