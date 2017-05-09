@@ -9,16 +9,20 @@ if(empty($_GET['page'])){
 } else {
   $post = $_GET['page'];
 
-  $statement = $pdo->prepare("SELECT * FROM posts WHERE post_id = :post_id");
+  $statement = $pdo->prepare("
+  SELECT * FROM posts
+  INNER JOIN users ON posts.user_id = users.id
+  WHERE post_id = :post_id
+  ");
 
   $statement->execute(['post_id' => $post]);
 
   $data = $statement->fetch();
 
   if($data){
-    $data['created_time'] = new DateTime($data['created_time']);
+    $data['created_time'];
     if($data['updated_time']){
-      $data['updated_time'] = new DateTime($data['updated_time']);
+      $data['updated_time'];
     }
   }
 }

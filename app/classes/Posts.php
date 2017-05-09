@@ -33,6 +33,7 @@ class Posts
     SET post_title = :post_title, post_content = :post_content, updated_time = NOW()
     WHERE post_id = :post_id
     ");
+
     $statement->execute([
       'post_id' => $id,
       'post_title' => $title,
