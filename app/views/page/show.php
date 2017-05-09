@@ -3,7 +3,14 @@
 
 <div class="container mt-5">
   <?php if(!$data): ?>
-    <p>No page found, sorry.</p>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-8">
+          <p>This post has been deleted.</p>
+          <a href="/">View all posts</a>
+        </div>
+      </div>
+    </div>
   <?php else: ?>
       <div class="row justify-content-center">
         <div class="col-sm-12 col-md-8">
@@ -36,9 +43,8 @@
                   <button type="submit" class="btn btn-primary">Like</button>
                 </form>
               <?php endif; ?>
-              <hr>
               <!-- Comments Form -->
-              <div class="well">
+              <div class="well mt-5">
                 <h4>Leave a Comment:</h4>
                 <form role="form">
                   <div class="form-group">
