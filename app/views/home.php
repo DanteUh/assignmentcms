@@ -13,6 +13,12 @@
         <?php foreach($posts as $post): ?>
           <div class="row justify-content-center">
             <div class="col-sm-12 col-md-8">
+              <?php if(!empty($_SESSION['success'])): ?>
+                <div class="alert alert-success">
+                  <?php echo $_SESSION['success']; ?>
+                </div>
+                <?php $_SESSION['success'] = ''; ?>
+              <?php endif; ?>
               <div class="post-preview">
                 <a href="<?php echo BASE_URL; ?>/page.php?page=<?php echo $post['post_id']; ?>">
                   <h5 class="post-title"><?php echo $post['post_title']; ?></h5>

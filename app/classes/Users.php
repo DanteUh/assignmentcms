@@ -67,7 +67,7 @@ class Users
 
 					 $_SESSION['admin'] = $results['role'];
 
-					 $msg_log = 'Hello' . $results['username'] . 'You successfully logged in';
+					 $_SESSION['success'] = 'Hello ' . '<strong>' .$results['username'] .'</strong>' . ', you successfully logged in!';
 
 					 header('Location: /');
 
@@ -76,10 +76,9 @@ class Users
 					//  echo $_POST['error'];
 				 }
 
-			 } elseif(empty($_POST['username'] && $_POST['password'])) {
+			 } else {
 				 return $_POST['error'] = 'Vänligen ange användarnamn och lösenord.';
 				//  echo $_POST['error'];
 			 }
 	 }
-
 }
