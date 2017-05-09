@@ -12,6 +12,9 @@
           <label for="password">Password: </label>
           <input type="text" class="form-control" name="password">
         </div>
+        <?php if(!empty($_POST['error'])): ?>
+          <?php echo $_POST['error']; ?></br></br>
+        <?php endif; ?>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
     </div>

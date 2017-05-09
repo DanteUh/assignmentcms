@@ -3,10 +3,13 @@
 
   <!-- För att kolla om det finns en post på den pagen -->
   <div class="container mt-5">
+    <!-- if there's not any posts in database -->
     <?php if(empty($posts)): ?>
+      <!-- this paragraph will be shown -->
       <p>No posts yet.</p>
     <?php else: ?>
       <!-- Listar alla befintliga posts -->
+      <!-- looping through all posts that $posts holds -->
         <?php foreach($posts as $post): ?>
           <div class="row justify-content-center">
             <div class="col-sm-12 col-md-8">

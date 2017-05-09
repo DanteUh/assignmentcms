@@ -32,14 +32,12 @@
           </li>
             <?php else: ?>
           <li class="nav-item">
-            <a class="nav-link" href="<?PHP echo BASE_URL; ?>/logout_user.php">Logga ut</a>
+            <a class="nav-link" href="<?PHP echo BASE_URL; ?>/new_post.php">Lägg till ny post</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?PHP echo BASE_URL; ?>/new_post.php">Lägg till ny post</a>
-            <?php endif; ?>
+            <a class="nav-link" href="<?PHP echo BASE_URL; ?>/logout_user.php">Logga ut</a>
           </li>
         </ul>
-        <?php if(isset($_SESSION['loggedin'])): ?>
           <span class="navbar-text"><?php echo 'Välkommen tillbaka ' . $_SESSION['username'] . '!</br>'; ?></span>
         <?php endif; ?>
       </div>
