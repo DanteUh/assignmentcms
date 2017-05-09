@@ -21,20 +21,22 @@ class Posts
   //
   //   return $posts;
   // }
-
+  // function to add a new post
   public function addPost()
   {
+    // prepare pdo with info for values to be inserted into posts table
     $statement = $this->pdo->prepare("
     INSERT INTO posts (post_title, post_content, user_id)
     VALUES (:post_title, :post_content, :user_id)
     ");
-
+    // execute statement with session and post values
     $statement->execute([
       ':post_title' => $_POST['post_title'],
       ':post_content' => $_POST['post_content'],
       ':user_id' => $_SESSION['user_id']
     ]);
   }
+  // function to update/edit a post
   public function updatePost()
   {
     $id = $_POST['post_id'];
@@ -55,6 +57,7 @@ class Posts
 
     header('Location: /');
   }
+  // function to delete an existing post
   public function deletePost()
   {
     $id = $_POST['post_id'];

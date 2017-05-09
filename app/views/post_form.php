@@ -1,4 +1,4 @@
-<?php require VIEW_ROOT . '/templates/header.php'; ?>
+<?php include VIEW_ROOT . '/templates/header.php'; ?>
 
 
 <div class="container">
@@ -21,4 +21,4 @@
 
 
 
-<?php require VIEW_ROOT . '/templates/footer.php'; ?>
+<?php include VIEW_ROOT . '/templates/footer.php'; ?>
