@@ -9,6 +9,19 @@ class Posts
   	$this->pdo = $pdo;
   }
 
+  // public function getAllPosts(){
+  //   $statement = $this->pdo->prepare("
+  //   SELECT * FROM posts
+  //   INNER JOIN users ON posts.user_id = users.id
+  //   ORDER BY created_time DESC
+  //   ");
+  //
+  //   $statement->execute();
+  //   $posts = $statement->fetchAll();
+  //
+  //   return $posts;
+  // }
+
   public function addPost()
   {
     //Try connect to the database

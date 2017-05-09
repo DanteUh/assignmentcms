@@ -1,6 +1,6 @@
-<?php require VIEW_ROOT . 'database.php';
+<?php
 
-class Likes()
+class Likes
 {
     private $pdo;
 
@@ -17,20 +17,30 @@ class Likes()
         if(isset($_GET['type'], $_GET['id']) && $_GET['type'] == "post"){
             //The query checks if the post actually exists (WHERE EXIST)
             //and creates 0 rows if the user has already liked it (NOT EXIST)
+            echo 'hej';
+            var_dump($_GET['id'], $_SESSION['user_id']);
+
             $statement = $this->pdo->prepare("
-            INSERT INTO likes(user_id, post_id)
+            INSERT INTO likes (user_id, post_id)
             VALUES (:user_id, :post_id)
-            WHERE EXISTS (
-                SELECT id FROM posts WHERE post_id = :post_id)
-            AND NOT EXIST (
-                SELECT post_id FROM likes
-                WHERE user_id = :user_id
-                AND post_id = :post_id)
-            LIMIT 1");
+            ");
+
+            // INSERT INTO likes (user_id, post_id)
+            // VALUES ({$_SESSION['user_id']}, {$_GET['id']})
+            // WHERE EXISTS (
+            //     SELECT post_id FROM posts WHERE post_id = {$_GET['id']})
+            // AND NOT EXISTS (
+            //     SELECT post_id FROM likes
+            //     WHERE user_id = {$_SESSION['user_id']}
+            //     AND post_id = {$_GET['id']})
+            // LIMIT 1
+
+            // INSERT INTO posts (post_title, post_content, user_id)
+            // VALUES (:post_title, :post_content, :user_id)
 
             $statement->execute([
                 ':user_id' => $_SESSION['user_id'],
-                ':post_id' => $_GET['post_id']
+                ':post_id' => $_GET['id']
             ]);
         }
     }
