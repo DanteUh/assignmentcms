@@ -8,6 +8,7 @@ include 'app/database.php';
 // $posts = new Posts($pdo);
 // $posts->getAllPosts();
 
+// this will fetch all existing posts from posts table and show them in home.php
 $statement = $pdo->prepare("
 SELECT * FROM posts
 INNER JOIN users ON posts.user_id = users.id

@@ -75,10 +75,15 @@ class Users
            header('Location: /');
 
          } elseif(!password_verify($_POST['password'], $results['password'])) {
-           header('Location: /login_user.php');
+           return $_POST['error'] = 'Fel användarnamn eller lösenord.';
+          //  echo $_POST['error'];
          }
 
-         }
+       } elseif(empty($_POST['username'] && $_POST['password'])) {
+         return $_POST['error'] = 'Vänligen ange användarnamn och lösenord.';
+        //  echo $_POST['error'];
+       }
+   }
          //If we don't connect: throw an exception
         catch(PDOException $e)
         {
@@ -87,8 +92,3 @@ class Users
 
        }
 
-
-   }
-
-
-}
