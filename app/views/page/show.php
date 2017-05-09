@@ -31,6 +31,11 @@
                   <?php endif; ?>
                 <?php endif; ?>
               <?php endif; ?>
+              <?php if($_SESSION == true): ?>
+                <form action="<?php echo BASE_URL; ?>/app/add_like.php?type=post&id=<?php echo $data['post_id']; ?>" method="POST">
+                  <button type="submit" class="btn btn-primary">Like</button>
+                </form>
+              <?php endif; ?>
               <hr>
               <!-- Comments Form -->
               <div class="well">
