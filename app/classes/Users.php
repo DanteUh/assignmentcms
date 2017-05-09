@@ -52,6 +52,12 @@ class Users
 
      if(!empty($_POST['username']) && !empty($_POST['password'])){
 
+       $statement = $this->pdo->prepare('SELECT id, username, email, password, role FROM users WHERE username = :username');
+       $statement->bindParam(':username', $_POST['username']);
+       $statement->execute();
+       //Fetch what is matched with the input
+       $results = $statement->fetch(PDO::FETCH_ASSOC);
+
       //  var_dump($results);
       //  var_dump(password_verify($_POST['password'], $results['password']));
        $msg_log = '';
@@ -65,7 +71,7 @@ class Users
 
            $_SESSION['admin'] = $results['role'];
 
-           $msg_log = 'Hello' . $results['username'] . 'You successfully logged in';
+           $_SESSION['success'] = 'Hello ' . '<strong>' .$results['username'] .'</strong>' . ', you successfully logged in!';
 
            header('Location: /');
 
@@ -74,12 +80,13 @@ class Users
           //  echo $_POST['error'];
          }
 
-       } else  {
+       } else {
          return $_POST['error'] = 'Vänligen ange användarnamn och lösenord.';
         //  echo $_POST['error'];
        }
    }
 
 
-       }
+}
+
 

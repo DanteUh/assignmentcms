@@ -1,7 +1,7 @@
 <?php require VIEW_ROOT . '/templates/header.php'; ?>
 
 
-<div class="container">
+<div class="container mt-5">
   <div class="row justify-content-center">
     <div class="col-sm-12 col-md-8">
       <form action="<?php echo BASE_URL; ?>/app/add_user.php" method="POST">
