@@ -36,7 +36,7 @@ class Users
           return $statement;
         }
         //If we don't connect: throw an exception
-      catch(PDOException $e)
+        catch(PDOException $e)
         {
           echo $e->getMessage();
         }
@@ -48,6 +48,9 @@ class Users
 
      if(!empty($_POST['username']) && !empty($_POST['password'])){
 
+            //Try connect to the database
+      try
+      {
        $statement = $this->pdo->prepare('SELECT id, username, email, password, role FROM users WHERE username = :username');
        $statement->bindParam(':username', $_POST['username']);
        $statement->execute();
@@ -75,8 +78,17 @@ class Users
            header('Location: /login_user.php');
          }
 
+         }
+         //If we don't connect: throw an exception
+        catch(PDOException $e)
+        {
+          echo $e->getMessage();
+        }
+
        }
 
+
    }
+
 
 }
