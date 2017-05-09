@@ -17,6 +17,9 @@
           <label for="password">Password: </label>
           <input type="text" class="form-control" name="password">
         </div>
+        <?php if(!empty($_POST['error_reg'])): ?>
+          <?php echo $_POST['error_reg']; ?></br>
+        <?php endif; ?>
         <button type="submit" class="btn btn-primary">OK</button>
       </form>
     </div>

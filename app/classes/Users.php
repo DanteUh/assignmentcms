@@ -12,17 +12,20 @@ class Users
 
     public function addUser()
     {
-        //För att checka att det inte redan finns en användare med samma email
+
+      $_POST['error_reg'] = '';
+
+      if(!empty($_POST['username']) && !empty($_POST['password'])){
+      //För att checka att det inte redan finns en användare med samma email
       $result = $this->pdo->prepare('SELECT * FROM users WHERE email = :email');
       $result->bindParam(':email', $_POST['email']);
 
       if(count($result) > 0){
-        $_SESSION['message'] = 'This user already exists';
+
+        $_POST['error_reg'] = 'This user already exists';
 
       }
-      //Try connect to the database
-      try
-      {
+
         $new_password = password_hash($_POST['password'], PASSWORD_DEFAULT);
         $statement = $this->pdo->prepare("
         INSERT INTO users(username, email, password)
@@ -35,27 +38,19 @@ class Users
         ]);
           return $statement;
         }
-        //If we don't connect: throw an exception
-        catch(PDOException $e)
-        {
-          echo $e->getMessage();
-        }
+        else {
+          $_POST['error_reg'] = 'Vänligen ange användarnamn, email och lösenord.';
+        //  echo $_POST['error'];
+       }
 
-    }
+       } 
+
+    
 
     public function login()
     {
 
      if(!empty($_POST['username']) && !empty($_POST['password'])){
-
-            //Try connect to the database
-      try
-      {
-       $statement = $this->pdo->prepare('SELECT id, username, email, password, role FROM users WHERE username = :username');
-       $statement->bindParam(':username', $_POST['username']);
-       $statement->execute();
-       //Fetch what is matched with the input
-       $results = $statement->fetch(PDO::FETCH_ASSOC);
 
       //  var_dump($results);
       //  var_dump(password_verify($_POST['password'], $results['password']));
@@ -79,16 +74,12 @@ class Users
           //  echo $_POST['error'];
          }
 
-       } elseif(empty($_POST['username'] && $_POST['password'])) {
+       } else  {
          return $_POST['error'] = 'Vänligen ange användarnamn och lösenord.';
         //  echo $_POST['error'];
        }
    }
-         //If we don't connect: throw an exception
-        catch(PDOException $e)
-        {
-          echo $e->getMessage();
-        }
+
 
        }
 

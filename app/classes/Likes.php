@@ -49,18 +49,6 @@ class Likes
 
 
 
-            public function like(){
-
-                if($this->like_post() == true){
-                echo "Posten är redan likead av dig.<br>";
-            }
-                else{
-                echo "Posten var inte likead, det går bra att likea.<br>";
-                $this->like_post();
-                }
-            }
-
-
             // $statement = $this->pdo->prepare("
             // INSERT INTO likes (user_id, post_id)
             // VALUES (:user_id, :post_id)
