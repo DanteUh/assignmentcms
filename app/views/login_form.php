@@ -3,14 +3,16 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-sm-12 col-md-8">
-      <form action="<?php echo BASE_URL; ?>/app/add_loginuser.php" method="POST">
+      <form class="mt-5" action="<?php echo BASE_URL; ?>/app/add_loginuser.php" method="POST">
+       <div class="image-container">
+            <!--<img class="" src="../../pic/login.png" alt="login-picture">-->
+        </div>
+        <h2 class="mb-3">Login</h2>
         <div class="form-group">
-          <label for="username">Username: </label>
-          <input type="text" class="form-control" name="username">
+          <input type="text" class="form-control" name="username" placeholder="Username">
         </div>
         <div class="form-group">
-          <label for="password">Password: </label>
-          <input type="text" class="form-control" name="password">
+          <input type="text" class="form-control" name="password" placeholder="Password">
         </div>
         <?php if(!empty($_POST['error'])): ?>
           <?php echo $_POST['error']; ?></br></br>
