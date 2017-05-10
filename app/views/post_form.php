@@ -5,13 +5,12 @@
   <div class="row justify-content-center">
     <div class="col-sm-12 col-md-8">
       <form action="<?php echo BASE_URL; ?>/app/add_post.php" method="POST">
+       <h1 class="display-4 text-center mb-4">Write a new blog post</h1>
         <div class="form-group">
-          <label for="title">Title</label>
-          <input type="text" class="form-control" name="post_title">
+          <input type="text" class="form-control" name="post_title" placeholder="Title goes here">
         </div>
         <div class="form-group">
-          <label for="exampleTextarea">Blog content</label>
-          <textarea class="form-control" rows="5" name="post_content"></textarea>
+          <textarea class="form-control" rows="5" name="post_content" placeholder="Write whatever you like, but it has to be huggable ofcourse <3"></textarea>
         </div>
         <?php if(!empty($_SESSION['msg_post'])): ?>
             <div class="alert alert-danger">

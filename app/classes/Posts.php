@@ -9,18 +9,22 @@ class Posts
     $this->pdo = $pdo;
   }
 
-  // public function getAllPosts(){
-  //   $statement = $this->pdo->prepare("
-  //   SELECT * FROM posts
-  //   INNER JOIN users ON posts.user_id = users.id
-  //   ORDER BY created_time DESC
-  //   ");
-  //
-  //   $statement->execute();
-  //   $posts = $statement->fetchAll();
-  //
-  //   return $posts;
-  // }
+  public function getUsersPosts()
+  {
+    $statement = $this->pdo->prepare("
+    SELECT * FROM posts
+    INNER JOIN users ON posts.user_id = users.id
+    WHERE users.id = :user_id
+    ORDER BY created_time DESC
+    ");
+
+    $statement->execute([
+      ':user_id' => $_SESSION['user_id']
+    ]);
+
+    return $posts = $statement->fetchAll();
+  }
+
   // function to add a new post
   public function addPost()
   {
@@ -58,7 +62,7 @@ class Posts
 
 
 
-  // function to update/edit a post
+  //Function to update/edit a post
   public function updatePost()
   {
     $_POST['msg_post'] = '';
@@ -87,12 +91,12 @@ class Posts
     else {
             return $_POST['msg_post'] = 'Du har inte ändrat något i posten än.';
             header('Location: /edit_post.php');
-        //  echo $_POST['error'];
+
         }  
   }
 
 
-  // function to delete an existing post
+  //Function to delete an existing post
   public function deletePost()
   {
     $id = $_POST['post_id'];
