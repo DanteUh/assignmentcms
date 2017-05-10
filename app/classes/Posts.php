@@ -42,7 +42,7 @@ class Posts
       ':user_id' => $_SESSION['user_id']
 
     ]);
-     $_SESSION['success'] = 'Ditt blogginlägg är nu postat!';
+    $_SESSION['success'] = 'Ditt blogginlägg är nu postat!';
     header('Location: /');
     } 
     //Exekverar om användaren inte skrivit i alla input-fält
@@ -85,7 +85,7 @@ class Posts
     } 
     //Exekverar om användaren inte skrivit i alla input-fält
     else {
-            $_POST['msg_post'] = 'Du har inte ändrat något i posten än.';
+            return $_POST['msg_post'] = 'Du har inte ändrat något i posten än.';
             header('Location: /edit_post.php');
         //  echo $_POST['error'];
         }  
