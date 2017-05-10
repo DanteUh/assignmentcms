@@ -1,5 +1,5 @@
-<?php session_start(); ?>
 <?php
+session_start();
 
 include 'app/database.php';
 //Det är är själva requesten sker av page.

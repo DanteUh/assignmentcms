@@ -12,8 +12,7 @@
           <input type="text" class="form-control" name="username" placeholder="Username">
         </div>
         <div class="form-group">
-          <label for="password">Password: </label>
-          <input type="password" class="form-control" name="password">
+          <input type="password" class="form-control" name="password" placeholder="Password">
         </div>
         <?php if(!empty($_POST['error'])): ?>
           <div class="alert alert-danger">
