@@ -17,9 +17,18 @@
           <label for="password">Password: </label>
           <input type="text" class="form-control" name="password">
         </div>
-        <?php if(!empty($_POST['error_reg'])): ?>
-          <?php echo $_POST['error_reg']; ?></br>
+        <!--Error meddelande om fel eller ingen input från användaren-->
+        <?php if(!empty($_POST['msg_adduser'])): ?>
+          <div class="alert alert-danger">
+            <?php echo $_POST['msg_adduser']; ?></br>
+          </div>
+          <!--Meddelande om användaren är registrerad-->
+          <?php elseif(!empty($_POST['msg_user_reg'])): ?>
+          <div class="alert alert-success">
+            <?php echo $_POST['msg_user_reg']; ?></br>
+          </div>
         <?php endif; ?>
+
         <button type="submit" class="btn btn-primary">OK</button>
       </form>
     </div>

@@ -16,13 +16,9 @@
           <input type="password" class="form-control" name="password">
         </div>
         <?php if(!empty($_POST['error'])): ?>
-
-          <?php echo $_POST['error']; ?></br>
-
           <div class="alert alert-danger">
             <?php echo $_POST['error']; ?>
           </div>
-
         <?php endif; ?>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>

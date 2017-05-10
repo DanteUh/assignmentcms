@@ -13,6 +13,11 @@
           <label for="exampleTextarea">Blog content</label>
           <textarea class="form-control" rows="5" name="post_content"></textarea>
         </div>
+        <?php if(!empty($_SESSION['msg_post'])): ?>
+            <div class="alert alert-danger">
+                <?php echo $_SESSION['msg_post']; ?>
+            </div>
+        <?php endif; ?>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
     </div>
