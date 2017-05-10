@@ -1,8 +1,7 @@
 <?php
-session_start();
 
 include 'database.php';
 include 'classes/Likes.php';
 
 $like = new Likes($pdo);
-$like->add_like();
+echo $like->count_likes($data['post_id']);

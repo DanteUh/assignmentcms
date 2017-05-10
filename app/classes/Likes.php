@@ -8,11 +8,12 @@ class Likes
         $this->pdo = $pdo;
     }
 
-    public function like_post()
+    public function add_like()
     {
         //Checks data from statement in like_exists()
         if($this->like_exists()){
-                echo "NONO MISTER!";
+            //echo 'No mister!';
+            header('Location:' . BASE_URL . '../page.php?page=' . $_GET['post_id']);
         }
         //if the like does not exist, insert a new like
         else{
@@ -24,6 +25,27 @@ class Likes
                 ':user_id' => $_SESSION['user_id'],
                 ':post_id' => $_GET['id']
             ]);
+        }
+        
+        header('Location:' . BASE_URL . '../page.php?page=' . $_GET['post_id']);
+    }
+    
+    public function delete_like() {
+        if($this->like_exists()){
+            $statement = $this->pdo->prepare("
+                DELETE FROM likes
+                WHERE user_id = :user_id
+                AND post_id = :post_id");
+            
+            $statement->execute([
+                ':user_id' => $_SESSION['user_id'],
+                ':post_id' => $_GET['id']
+            ]);
+            
+            header('Location:' . BASE_URL . '../page.php?page=' . $_GET['post_id']);
+        }
+        else {
+            header('Location:' . BASE_URL . '../page.php?page=' . $_GET['post_id']);
         }
     }
     
@@ -44,7 +66,7 @@ class Likes
     }
     
     //Not finished!! :)
-    public function count_likes()
+    public function count_likes($post_id)
     {
         $statement = $this->pdo->prepare("
         SELECT posts.post_id, posts.title
@@ -57,5 +79,7 @@ class Likes
         GROUP BY posts.post_id");
 
         $statement->execute();
+        
+        return $statement->fetch();
     }
 }

@@ -7,6 +7,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../../css/main.css">
   </head>
   <body>
     <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
@@ -14,9 +15,8 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <a class="navbar-brand" href="/">
-        <img src="/pic/bloggis.png" width="30" height="30" class="d-inline-block align-top" alt="">
-        Bloggisarna
-      </a>
+          <img src="/pic/bloggis.png" width="30" height="30" class="d-inline-block align-top mr-1" alt="">Cuddly
+        </a>
 
       <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
         <ul class="navbar-nav mr-auto mt-2 mt-md-0">
