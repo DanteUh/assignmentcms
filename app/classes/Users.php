@@ -4,115 +4,118 @@ class Users
 {
 
 
-	  private $pdo;
+    private $pdo;
 
     public function __construct($pdo){
         $this->pdo = $pdo;
     }
 
-		public function addUser()
-	  {
-		    //För att checka att det inte redan finns en användare med samma email
-		  $result = $this->pdo->prepare('SELECT * FROM users WHERE email = :email');
-		  $result->bindParam(':email', $_POST['email']);
 
-		  if(count($result) > 0){
-		    $_SESSION['message'] = 'This user already exists';
+    /*public function addUser()
+    {
 
-		  }
-		  //Try connect to the database
-		  try
-		  {
-		    $new_password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-		    $statement = $this->pdo->prepare("
-		    INSERT INTO users(username, email, password)
-		    VALUES (:username, :email, :password)");
+ 
+      //Checkar om användaren skrivit i alla input-fält
+      if(!empty($_POST['username']) && !empty($_POST['email'])){
+    
+         $result = $this->pdo->prepare("SELECT * FROM users WHERE username = :username AND email = :email");
+         $result->execute(':username' => $_POST['username'], ':email' => $_POST['email']);
+         $result->fetchAll();
 
-		    $statement->execute([
-		      ':username' => $_POST['username'],
-		      ':email' => $_POST['email'],
-		      ':password' => $new_password
-		    ]);
-		      return $statement;
-		    }
-		    //If we don't connect: throw an exception
-		  catch(PDOException $e)
-		    {
-		      echo $e->getMessage();
-		    }
+          }
+      }*/
+     
+      //
+      public function addUser(){
+      //För att checka att användaren skrivit in i båda input-fält
+      if(!empty($_POST['username']) && !empty($_POST['email']) && !empty($_POST['password'])){
 
-	  }
+        $_POST['msg_adduser'] = '';
+        $_POST['msg_user_reg'] = '';
 
-		public function login()
- 		{
-		 if(!empty($_POST['username']) && !empty($_POST['password'])){
+        if($this->userExists()){
+          return $_POST['msg_adduser'] = 'Användaren finns redan';
+        } else {
+          $new_password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+          $statement = $this->pdo->prepare("
+            INSERT INTO users (username, email, password)
+            VALUES (:username, :email, :password)
+          ");
+          
+          $statement->execute([
+              ':username' => $_POST['username'],
+              ':email' => $_POST['email'],
+              ':password' => $new_password
+          ]);
+          return $_POST['msg_user_reg'] = 'Du är nu registrerad!';
+        }     
+      }
+      //Exekverar om användaren inte skrivit i alla input-fält
+      else{
+        return $_POST['msg_adduser'] = 'Vänligen ange användarnamn, email och lösenord.';
+      }
+      }
 
-			 $statement = $this->pdo->prepare('SELECT id, username, email, password, role FROM users WHERE username = :username');
-			 $statement->bindParam(':username', $_POST['username']);
-			 $statement->execute();
-			 //Fetch what is matched with the input
-			 $results = $statement->fetch(PDO::FETCH_ASSOC);
+      //Funktion som checkar så att användaren inte redan finns i databasen
+      private function userExists(){
+        
+          $statement = $this->pdo->prepare("
+            SELECT username, email FROM users
+            WHERE username = :username
+            OR email = :email 
+          ");
 
-			//  var_dump($results);
-			//  var_dump(password_verify($_POST['password'], $results['password']));
-			 $msg_log = '';
-				 if(password_verify($_POST['password'], $results['password'])){
+          $statement->execute([
+              ':username' => $_POST['username'],
+              ':email' => $_POST['email']
+          ]);
 
-					 $_SESSION['user_id'] = $results['id'];
+          //Saves and return the data from the statement
+         return $statement->fetch();
+    
+      }
 
-					 $_SESSION['loggedin'] = true;
 
-					 $_SESSION['username'] = $results['username'];
+    public function login()
+    {
+     //För att checka att användaren skrivit in i båda input-fält
+     if(!empty($_POST['username']) && !empty($_POST['password'])){
 
-					 $_SESSION['admin'] = $results['role'];
+       $statement = $this->pdo->prepare('SELECT id, username, email, password, role FROM users WHERE username = :username');
+       $statement->bindParam(':username', $_POST['username']);
+       $statement->execute();
+       //Fetch what is matched with the input
+       $results = $statement->fetch(PDO::FETCH_ASSOC);
 
-					 $_SESSION['success'] = 'Hello ' . '<strong>' .$results['username'] .'</strong>' . ', you successfully logged in!';
+       $msg_log = '';
+         if(password_verify($_POST['password'], $results['password'])){
 
-					 header('Location: /');
+           $_SESSION['user_id'] = $results['id'];
 
-				 } elseif(!password_verify($_POST['password'], $results['password'])) {
-					 return $_POST['error'] = 'Fel användarnamn eller lösenord.';
-				 }
+           $_SESSION['loggedin'] = true;
 
-			 } else {
-				 return $_POST['error'] = 'Vänligen ange användarnamn och lösenord.';
-			 }
-	 }
+           $_SESSION['username'] = $results['username'];
+
+           $_SESSION['admin'] = $results['role'];
+
+           $_SESSION['success'] = 'Hej ' . '<strong>' .$results['username'] .'</strong>' . ', du är nu inloggad!';
+  
+
+           header('Location: /');
+
+         } elseif(!password_verify($_POST['password'], $results['password'])) {
+           return $_POST['error'] = 'Fel användarnamn eller lösenord.';
+ 
+         }
+
+       } else {
+         return $_POST['error'] = 'Vänligen ange användarnamn och lösenord.';
+ 
+       }
+   }
+
+
 }
 
 
-// public function addUser(){
-//
-// 		if($this->userExists()){
-// 						//add user here...
-// 		} else {
-// 				$statement = $this->pdo->prepare("
-// 					INSERT INTO users (username, email, password)
-// 					VALUES (:username, :email, :password)
-// 				");
-//
-// 				$statement->execute([
-// 						':username' => $_POST['username'],
-// 						':email' => $_POST['email'],
-// 						':password' => $_POST['password']
-// 				]);
-// 		}
-// }
-//
-//
-// private function userExists(){
-//
-// 		$statement = $this->pdo->prepare("
-// 			SELECT username, email FROM users
-// 			WHERE username = :username
-// 			AND email = :email
-// 		");
-//
-// 		$statement->execute([
-// 				':username' => $_POST['username'],
-// 				':email' => $_POST['email']
-// 		]);
-//
-// 		//Saves and return the data from the statement
-// 		return $statement->fetch();
-// }
+

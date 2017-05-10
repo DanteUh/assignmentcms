@@ -6,7 +6,7 @@ class Posts
 
   public function __construct($pdo)
   {
-  	$this->pdo = $pdo;
+    $this->pdo = $pdo;
   }
 
   public function getUsersPosts()
@@ -28,21 +28,47 @@ class Posts
   // function to add a new post
   public function addPost()
   {
+
+    $_SESSION['msg_post'] = '';
+
+    //Checkar om användaren skrivit i både titel- och innehållsfältet
+    if(!empty($_POST['post_title']) && !empty($_POST['post_content'])){
     // prepare pdo with info for values to be inserted into posts table
     $statement = $this->pdo->prepare("
     INSERT INTO posts (post_title, post_content, user_id)
     VALUES (:post_title, :post_content, :user_id)
     ");
+
     // execute statement with session and post values
     $statement->execute([
       ':post_title' => $_POST['post_title'],
       ':post_content' => $_POST['post_content'],
       ':user_id' => $_SESSION['user_id']
+
     ]);
+    $_SESSION['success'] = 'Ditt blogginlägg är nu postat!';
+    header('Location: /');
+    } 
+    //Exekverar om användaren inte skrivit i alla input-fält
+    else {
+            $_SESSION['msg_post'] = 'Vänligen skriv några rader innan du skickar ditt inlägg.';
+            header('Location: /new_post.php');
+        //  echo $_POST['error'];
+        }  
   }
-  // function to update/edit a post
+
+
+
+
+
+
+  //Function to update/edit a post
   public function updatePost()
   {
+    $_POST['msg_post'] = '';
+    //Checkar om användaren skrivit i både titel- och innehållsfältet
+    if(!empty($_POST['post_title']) && !empty($_POST['post_content'])){
+
     $id = $_POST['post_id'];
     $title = $_POST['post_title'];
     $content = $_POST['post_content'];
@@ -60,8 +86,17 @@ class Posts
     ]);
 
     header('Location: /');
+    } 
+    //Exekverar om användaren inte skrivit i alla input-fält
+    else {
+            return $_POST['msg_post'] = 'Du har inte ändrat något i posten än.';
+            header('Location: /edit_post.php');
+
+        }  
   }
-  // function to delete an existing post
+
+
+  //Function to delete an existing post
   public function deletePost()
   {
     $id = $_POST['post_id'];

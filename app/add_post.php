@@ -3,7 +3,8 @@ session_start();
 include 'database.php';
 include 'classes/Posts.php';
 
-header('Location: /');
 
 $post = new Posts($pdo);
-$post->addPost();
+$post = $post->addPost();
+
+include VIEW_ROOT . '/post_form.php';

@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../../../css/main.css">
   </head>
   <body>
+
     <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -46,3 +47,4 @@
         <?php endif; ?>
       </div>
     </nav>
+

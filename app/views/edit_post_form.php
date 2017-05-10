@@ -12,6 +12,11 @@
           <label for="exampleTextarea">Blog content</label>
           <textarea class="form-control" rows="5" name="post_content"><?php echo $post['post_content']; ?></textarea>
         </div>
+        <?php if(!empty($_POST['msg_post'])): ?>
+            <div class="alert alert-danger">
+                <?php echo $_POST['msg_post']; ?>
+            </div>
+        <?php endif; ?>
         <input type="hidden" name="post_id" value="<?php echo $post['post_id']; ?>">
         <button type="submit" class="btn btn-primary">Submit</button>
         <a href="<?php echo BASE_URL; ?>/page.php?page=<?php echo $post['post_id']; ?>" class="btn btn-primary">Cancel</a>
