@@ -9,18 +9,22 @@ class Posts
   	$this->pdo = $pdo;
   }
 
-  // public function getAllPosts(){
-  //   $statement = $this->pdo->prepare("
-  //   SELECT * FROM posts
-  //   INNER JOIN users ON posts.user_id = users.id
-  //   ORDER BY created_time DESC
-  //   ");
-  //
-  //   $statement->execute();
-  //   $posts = $statement->fetchAll();
-  //
-  //   return $posts;
-  // }
+  public function getUsersPosts()
+  {
+    $statement = $this->pdo->prepare("
+    SELECT * FROM posts
+    INNER JOIN users ON posts.user_id = users.id
+    WHERE users.id = :user_id
+    ORDER BY created_time DESC
+    ");
+
+    $statement->execute([
+      ':user_id' => $_SESSION['user_id']
+    ]);
+
+    return $posts = $statement->fetchAll();
+  }
+
   // function to add a new post
   public function addPost()
   {

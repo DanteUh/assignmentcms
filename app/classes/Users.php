@@ -45,7 +45,6 @@ class Users
 
 		public function login()
  		{
-
 		 if(!empty($_POST['username']) && !empty($_POST['password'])){
 
 			 $statement = $this->pdo->prepare('SELECT id, username, email, password, role FROM users WHERE username = :username');
@@ -73,12 +72,47 @@ class Users
 
 				 } elseif(!password_verify($_POST['password'], $results['password'])) {
 					 return $_POST['error'] = 'Fel användarnamn eller lösenord.';
-					//  echo $_POST['error'];
 				 }
 
 			 } else {
 				 return $_POST['error'] = 'Vänligen ange användarnamn och lösenord.';
-				//  echo $_POST['error'];
 			 }
 	 }
 }
+
+
+// public function addUser(){
+//
+// 		if($this->userExists()){
+// 						//add user here...
+// 		} else {
+// 				$statement = $this->pdo->prepare("
+// 					INSERT INTO users (username, email, password)
+// 					VALUES (:username, :email, :password)
+// 				");
+//
+// 				$statement->execute([
+// 						':username' => $_POST['username'],
+// 						':email' => $_POST['email'],
+// 						':password' => $_POST['password']
+// 				]);
+// 		}
+// }
+//
+//
+// private function userExists(){
+//
+// 		$statement = $this->pdo->prepare("
+// 			SELECT username, email FROM users
+// 			WHERE username = :username
+// 			AND email = :email
+// 		");
+//
+// 		$statement->execute([
+// 				':username' => $_POST['username'],
+// 				':email' => $_POST['email']
+// 		]);
+//
+// 		//Saves and return the data from the statement
+// 		return $statement->fetch();
+// }
