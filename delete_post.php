@@ -9,5 +9,4 @@ $post->execute(['post_id' => $id]);
 
 $post = $post->fetch();
 
-
 include VIEW_ROOT . '/delete_post_form.php';

@@ -2,11 +2,15 @@
 session_start();
 
 include 'app/database.php';
-//Det är här själva requesten sker av page.
+//This is where the request of the page run
+//Om jag vill hämta ut bilderna från databasen och visa dem tillsammans med posts, gör jag en ny statement under eller kan jag 
+//hämta bilderna samtidigt som jag hämtar postsen i samma sql-query?
 
+//Checks if pages with posts are empty
 if(empty($_GET['page'])){
   $post = false;
 } else {
+  //If posts exists, fetch them and put them in the data-variable for it to be displayed in the show.php-file
   $post = $_GET['page'];
 
   $statement = $pdo->prepare("
@@ -26,5 +30,7 @@ if(empty($_GET['page'])){
     }
   }
 }
+
+
 
 include VIEW_ROOT . '/page/show.php';

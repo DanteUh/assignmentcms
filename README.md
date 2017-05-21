@@ -1,51 +1,52 @@
-# Assignment - Simple CMS :notebook:
-###### Gruppuppgift: max 3 personer
 
-## Kravspecifikation
-
-Ni ska skapa en blogg eller bloggliknande applikation skriven i __PHP__ och __MySQL__ som fungerar som ett mindre _CMS_ där man kan lägga till, redigera och ta bort innehåll. Man ska även kunna rösta eller gilla innehållet i er applikation.
-
-**Man ska kunna:**
-* Lägga till nya _posts_, en _post_ kan vara ett blogginlägg, artikel eller liknande.
-* Ni har en sida där man kan se alla _posts_ samt kunna se när innehållet är skapat och av vem innehållet är skapat.
-* Ta bort samt redigera existerande _posts_.
-* Logga in och logga ut med olika användare som har olika roller.
-    - Det ska finnas minst två roller: __admin__ och vanlig användare.
-    - Man ska __inte__ kunna regga sig med samma användarnamn eller email flera gånger.
-* Bara den användaren som har skapat en viss _post_ kan redigera eller ta bort den. Alternativt så kan man ta bort den om man har admin-rättigheter.
-* En användare ska kunna _gilla_ eller på något sätt rösta på varje _post_.
-    - En användare ska __inte__ kunna rösta på samma _post_ flera gånger.
-    - En användare ska kunna ta bort sin röst från en _post_.
+# Bloggbygge
 
 
-#### Tekniska krav för G
+Av: Andreas Engström, Dante Ulinder och Anna Hallgren-Gribbe
+Kurs: CMS, PHP & MySQL 
+FEND 16
 
-* Ni uppfyller samtliga krav i kravspecifikationen ovan.
-* Ni använder er utav **PHP** för att skriva backend-koden och **MySQL** som databas.
-* Ni får använda er utav _JavaScript_ för viss funktionalitet men det mesta ska kunna skötas via _PHP_.
-* Ni för loggbok, *Trello* eller på något sätt dokumenterar vilka delar av projektet ni har jobbat med.
-* Ni versionshanterar med `git`. Detta är viktigt eftersom det är ett grupprojekt men ni examineras individuellt. Detta betyder att jag kommer att använda er loggbok samt `git` för att se över hur ni har bidragit till projektet.
-* Ni skriver en `README.md` med alla den relevanta dokumentation som behövs till projektet. Tänk på dokumentationen som ni gjorde till AJAX-projektet och använd liknande struktur i er `README.md`.
-* Frontend-delen ska vara användarvänlig och responsiv. Projektet ska kunna fungera som en färdig produkt.
+[Instruktioner](https://github.com/FEND16/cms-php-mysql/blob/master/group_assignment_simple_cms.md)
 
-#### Tekniska krav för VG
 
-* Ni jobbar till största del objektorienterad i ert projekt.
-* Ni använder er utav *Dependency Injection*.
-* Varje medlem i gruppen ska göra minst ett `AJAX`-anrop någonstans i er applikation för att kalla på PHP-sidor som sköter uppdatering av innehåll. Ni kallar på en PHP-sida men uppdatering av innehållet sker dynamiskt med JavaScript.
+## Kort beskrivning av bloggen och dess funktionalitet
 
-## Inlämning
+Vi har i denna uppgift byggt ett enklare CMS i PHP och MySQL. CMSet har följande funktioner:
 
-_Betygskala:_ __IG/G/VG__
+* En användare kan registrera sig som ny användare
+* Användaren kan logga in
+* Användaren kan logga ut
+* Användaren kan skapa egna blogginlägg
+* Användaren kan gilla andras blogginlägg en gång, samt avgilla dem.
+* En vanlig användare kan ta bort och uppdatera sina egna blogginlägg
+* En användare i rollen som admin kan´även ta bort samtliga blogginlägg, men inte ändra andras.
+* Det finns även möjlighet att filtrera fram sina egna blogginlägg.
+* Samtlig funktionalitet är error-hanterad utifrån de error som kan uppstå. 
 
-Betyget är baserat på dels projektet som ni lämnar in men också på er dokumentation och hur mycket ni har bidragit till projektet. Detta ska man kunna utläsa från er dokumentation samt versionshantering.
 
-Lämnas in senast: __24/5 23:55__
+## Struktur av bloggbygget
 
-Lämnas in via studentportalen enligt följande mönster:
+Vi har främst arbetat objektorienterat, där fokus legat på att skapa funktioner i klasser uppdelade på användare, posts och likes. I Users-klassen har vi t ex samlat funktionerna som hanterar inloggning och registrering av en ny användare, medan funktionerna som lägger till, tar bort och uppdaterar blogginlägg ligger samlade i Posts-klassen. Strukturen vi valt fungerar som ett designmönster, lite utifrån samma tänk som de designmönster vi utformade i JavaScript 2-kursen, där vi endast kallar på dem när vi skapar nya pdo-objekt och ska göra något med varje specifik funktion. 
 
-`gruppnamn_simple_cms.zip`
+Vi har skapat en filstruktur som delar upp dataflödet i den del som användaren ser utåt, den del som länkar datan utåt med det som sker i databasen samt en backend-del som sköter hanteringen av datan i databasen. Strukturen utgår alltså till stor del från Model-View-Controller modellen för att skapa ordning bland filerna.
 
-Inlämningen ska vara i **.zip** samt inte innehålla några __node_modules__.
 
-__Inlämningen ska även innehålla er exporterade databas.__
+## Använda verktyg/teknologier
+
+| Område        	| Verktyg       |
+| ---------------- 	|:-------------:|
+| Språk         	| PHP, MySQL    | 
+| Ramverk       	| Bootstrap     | 
+| Versionshantering | Github        | 
+| Kommunikation     | Trello, Slack | 
+| Mockups		    | Photoshop     |  
+
+
+
+
+## Saker att eventuellt vidareutveckla i koden
+
+
+
+
+

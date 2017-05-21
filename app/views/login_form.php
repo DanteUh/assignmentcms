@@ -7,7 +7,7 @@
   <div class="row justify-content-center">
     <div class="col-sm-12 col-md-8">
       <form action="<?php echo BASE_URL; ?>/app/add_loginuser.php" method="POST">
-        <h1 class="display-4 mb-4 text-center">Login</h1>
+        <h1 class="display-4 mb-4 text-center">Log In</h1>
         <div class="form-group">
           <input type="text" class="form-control" name="username" placeholder="Username">
         </div>

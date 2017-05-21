@@ -10,7 +10,7 @@
       </div>
     </div>
     <?php else: ?>
-    <!-- Listar alla befintliga posts -->
+    <!-- List all existing posts -->
     <!-- looping through all posts that $posts holds -->
       <?php foreach($posts as $post): ?>
         <div class="row justify-content-center">
