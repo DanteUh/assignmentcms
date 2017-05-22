@@ -23,10 +23,10 @@
         <ul class="navbar-nav mr-auto mt-2 mt-md-0">
           <li class="nav-item">
             <?php if(!isset($_SESSION['loggedin'])): ?>
-            <a class="nav-link" href="<?PHP echo BASE_URL; ?>/login_user.php">Logga in</a>
+            <a class="nav-link" href="<?PHP echo BASE_URL; ?>/login_user.php">Log In</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?PHP echo BASE_URL; ?>/reg_user.php">Registrera</a>
+            <a class="nav-link" href="<?PHP echo BASE_URL; ?>/reg_user.php">Register</a>
           </li>
             <?php else: ?>
           <li class="nav-item dropdown">
@@ -40,10 +40,10 @@
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?PHP echo BASE_URL; ?>/logout_user.php">Logga ut</a>
+            <a class="nav-link" href="<?PHP echo BASE_URL; ?>/logout_user.php">Log Out</a>
           </li>
         </ul>
-          <span class="navbar-text"><?php echo 'Välkommen tillbaka <span class="text-info">' . $_SESSION['username'] . '</span></br>'; ?></span>
+          <span class="navbar-text"><?php echo 'Welcome back <span class="text-info">' . $_SESSION['username'] . '</span></br>'; ?></span>
         <?php endif; ?>
       </div>
     </nav>

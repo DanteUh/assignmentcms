@@ -4,38 +4,25 @@ class Users
 {
 
 
-    private $pdo;
+      private $pdo;
 
-    public function __construct($pdo){
-        $this->pdo = $pdo;
-    }
+      public function __construct($pdo){
+          $this->pdo = $pdo;
+      }
 
-
-    /*public function addUser()
-    {
-
- 
-      //Checkar om användaren skrivit i alla input-fält
-      if(!empty($_POST['username']) && !empty($_POST['email'])){
-    
-         $result = $this->pdo->prepare("SELECT * FROM users WHERE username = :username AND email = :email");
-         $result->execute(':username' => $_POST['username'], ':email' => $_POST['email']);
-         $result->fetchAll();
-
-          }
-      }*/
      
-      //
+      // Function that registrates a new user
       public function addUser(){
-      //För att checka att användaren skrivit in i båda input-fält
+      // To check if user has typed in all input-fields
       if(!empty($_POST['username']) && !empty($_POST['email']) && !empty($_POST['password'])){
 
         $_POST['msg_adduser'] = '';
         $_POST['msg_user_reg'] = '';
-
+        //Run the userExists-function to see if this user is not already in the database
         if($this->userExists()){
-          return $_POST['msg_adduser'] = 'Användaren finns redan';
+          return $_POST['msg_adduser'] = 'This user already exists';
         } else {
+          //Hash the password to be sent in the database
           $new_password = password_hash($_POST['password'], PASSWORD_DEFAULT);
           $statement = $this->pdo->prepare("
             INSERT INTO users (username, email, password)
@@ -47,16 +34,16 @@ class Users
               ':email' => $_POST['email'],
               ':password' => $new_password
           ]);
-          return $_POST['msg_user_reg'] = 'Du är nu registrerad!';
+          return $_POST['msg_user_reg'] = 'You have now been registered!';
         }     
       }
-      //Exekverar om användaren inte skrivit i alla input-fält
+      // This will run if the user has not typed in the input-fields
       else{
-        return $_POST['msg_adduser'] = 'Vänligen ange användarnamn, email och lösenord.';
+        return $_POST['msg_adduser'] = 'Please, write a username, email and password';
       }
       }
 
-      //Funktion som checkar så att användaren inte redan finns i databasen
+      // Function that checks if the user is not already in the database
       private function userExists(){
         
           $statement = $this->pdo->prepare("
@@ -70,49 +57,51 @@ class Users
               ':email' => $_POST['email']
           ]);
 
-          //Saves and return the data from the statement
+         //Saves and return the data from the statement
          return $statement->fetch();
     
       }
 
+      // Function that logs in user
+      public function login()
+      {
+       // To check if user has typed in both input-fields
+       if(!empty($_POST['username']) && !empty($_POST['password'])){
 
-    public function login()
-    {
-     //För att checka att användaren skrivit in i båda input-fält
-     if(!empty($_POST['username']) && !empty($_POST['password'])){
+         $statement = $this->pdo->prepare('SELECT id, username, email, password, role FROM users WHERE username = :username');
+         $statement->bindParam(':username', $_POST['username']);
+         $statement->execute();
+         //Fetch what is matched with the input
+         $results = $statement->fetch(PDO::FETCH_ASSOC);
+         //Tror inte den här behövs, eller gör om den till $_SESSION['msg_log'] = '' 
+         $msg_log = '';
+           if(password_verify($_POST['password'], $results['password'])){
 
-       $statement = $this->pdo->prepare('SELECT id, username, email, password, role FROM users WHERE username = :username');
-       $statement->bindParam(':username', $_POST['username']);
-       $statement->execute();
-       //Fetch what is matched with the input
-       $results = $statement->fetch(PDO::FETCH_ASSOC);
+             $_SESSION['user_id'] = $results['id'];
 
-       $msg_log = '';
-         if(password_verify($_POST['password'], $results['password'])){
+             $_SESSION['loggedin'] = true;
 
-           $_SESSION['user_id'] = $results['id'];
+             $_SESSION['username'] = $results['username'];
 
-           $_SESSION['loggedin'] = true;
+             $_SESSION['admin'] = $results['role'];
 
-           $_SESSION['username'] = $results['username'];
+             $_SESSION['success'] = 'Hey ' . '<strong>' .$results['username'] .'</strong>' . ', you are now logged in!';
+    
+             //Redirects to the root-directory
+             header('Location: /');
+             // Return an error-message if the password-input is not matched with the input
+           } elseif(!password_verify($_POST['password'], $results['password'])) {
 
-           $_SESSION['admin'] = $results['role'];
-
-           $_SESSION['success'] = 'Hej ' . '<strong>' .$results['username'] .'</strong>' . ', du är nu inloggad!';
-  
-
-           header('Location: /');
-
-         } elseif(!password_verify($_POST['password'], $results['password'])) {
-           return $_POST['error'] = 'Fel användarnamn eller lösenord.';
- 
+                return $_POST['error'] = 'Wrong username or password. Please try again!';
+   
+           }
+           // Return an error-message if the user has not typed in both fields
+         } else {
+          
+                return $_POST['error'] = 'Please, write a username and password.';
+   
          }
-
-       } else {
-         return $_POST['error'] = 'Vänligen ange användarnamn och lösenord.';
- 
-       }
-   }
+     }
 
 
 }

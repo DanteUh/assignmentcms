@@ -1,12 +1,15 @@
 <?php
 
+//To display error-messages
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+//Defines the paths
 define('APP_ROOT', __DIR__);
 define('VIEW_ROOT', APP_ROOT . '/views');
 define('BASE_URL', 'http://localhost:8888');
+
 
 $options = [
   PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,

@@ -8,7 +8,7 @@ class Posts
   {
     $this->pdo = $pdo;
   }
-
+  // Function that get all posts from each user
   public function getUsersPosts()
   {
     $statement = $this->pdo->prepare("
@@ -25,18 +25,20 @@ class Posts
     return $posts = $statement->fetchAll();
   }
 
-  // function to add a new post
+  // Function to add a new post
   public function addPost()
   {
 
     $_SESSION['msg_post'] = '';
+    $_SESSION['success'] = '';
 
-    //Checkar om användaren skrivit i både titel- och innehållsfältet
+
+    // Checks if the user has typed in both fields
     if(!empty($_POST['post_title']) && !empty($_POST['post_content'])){
     // prepare pdo with info for values to be inserted into posts table
     $statement = $this->pdo->prepare("
-    INSERT INTO posts (post_title, post_content, user_id)
-    VALUES (:post_title, :post_content, :user_id)
+      INSERT INTO posts (post_title, post_content, user_id)
+      VALUES (:post_title, :post_content, :user_id)
     ");
 
     // execute statement with session and post values
@@ -46,12 +48,13 @@ class Posts
       ':user_id' => $_SESSION['user_id']
 
     ]);
-    $_SESSION['success'] = 'Ditt blogginlägg är nu postat!';
+    $_SESSION['success'] = 'Your post has now been posted!';
     header('Location: /');
+
     }
-    //Exekverar om användaren inte skrivit i alla input-fält
+    // If the user has not typed in the fields
     else {
-            $_SESSION['msg_post'] = 'Vänligen skriv några rader innan du skickar ditt inlägg.';
+            $_SESSION['msg_post'] = 'Please write something before you post!';
             header('Location: /new_post.php');
         //  echo $_POST['error'];
         }
@@ -59,19 +62,17 @@ class Posts
 
 
 
-
-
-
   //Function to update/edit a post
   public function updatePost()
   {
-    $_POST['msg_post'] = '';
-    //Checkar om användaren skrivit i både titel- och innehållsfältet
+
+    $_SESSION['success'] = '';
+    //Checks if the user has written anything in the title and content-fields
     if(!empty($_POST['post_title']) && !empty($_POST['post_content'])){
 
-    $id = $_POST['post_id'];
-    $title = $_POST['post_title'];
-    $content = $_POST['post_content'];
+      $id = $_POST['post_id'];
+      $title = $_POST['post_title'];
+      $content = $_POST['post_content'];
 
     $statement = $this->pdo->prepare("
       UPDATE posts
@@ -85,13 +86,13 @@ class Posts
       'post_content' => $content
     ]);
 
-    header('Location: /');
+    $_SESSION['success'] = 'Your post has now been edited!';
+    header('Location: /users_posts.php');
     }
-    //Exekverar om användaren inte skrivit i alla input-fält
+    //If user hasn't edited anything
     else {
-            return $_POST['msg_post'] = 'Du har inte ändrat något i posten än.';
-            header('Location: /edit_post.php');
-
+            $_SESSION['msg_edit'] = 'Please, type in something in both fields.';
+            header('Location: /');
         }
   }
 
@@ -99,6 +100,8 @@ class Posts
   //Function to delete an existing post
   public function deletePost()
   {
+
+    $_SESSION['success'] = '';
     $id = $_POST['post_id'];
 
     $statement = $this->pdo->prepare("
@@ -109,7 +112,7 @@ class Posts
     $statement->execute([
       'post_id' => $id
     ]);
-
+    $_SESSION['success'] = 'The post has now been deleted!';
     header('Location: /');
   }
 }
