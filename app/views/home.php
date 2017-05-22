@@ -1,11 +1,11 @@
 
 <!-- I view visas alla posts utåt som hämtas från index.php -->
 <?php require VIEW_ROOT . '/templates/header.php'; ?>
-   
+
     <div class="jumbotron jumbotron-fluid">
       <div class="container text-center">
         <h1 class="display-3 justify-content-center mt-5">CUDDLY</h1>
-        <p class="lead">Probably the most "Huggable" blog CMS you have ever seen</p>
+        <p class="lead">Simple CMS</p>
       </div>
     </div>
 
