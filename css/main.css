@@ -9,4 +9,9 @@
 .jumbotron .container {
   color: white; }
 
+.clipper {
+  max-height: 250px;
+  max-width: 609px;
+  overflow: hidden; }
+
 /*# sourceMappingURL=main.css.map */
