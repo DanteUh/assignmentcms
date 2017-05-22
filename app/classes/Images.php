@@ -38,18 +38,17 @@ class Images
                     //Adds the path where the file is
                     $fileDestination = APP_ROOT .'/uploads/'.$fileNameNew;
                     move_uploaded_file($fileTmpName, $fileDestination);
+                    return $fileNameNew;
                     /*$img = "uploads/".$fileName;*/
                     /*echo "<img height=\"200\" width=\"200\" src=\"$fileDestination\"/>";*/
                     // prepare pdo with info for values to be inserted into posts table
-                    $statement = $this->pdo->prepare("
-                    INSERT INTO images (image, image_name, post_id)
-                    VALUES ('$fileNameNew', '$fileName', ':post_id')
+                    /*$statement = $this->pdo->prepare("
+                    INSERT INTO posts (image)
+                    VALUES ('$fileNameNew')
                     ");
 
                     $statement->bindParam('$fileNameNew', $_POST['image']);
-                    $statement->bindParam('$fileName', $_POST['image_name']);
-                    $statement->bindParam(':post_id', $_POST['post_id']); //Hur kopplar jag ihop image_id med post_id?
-                    $statement->execute();
+                    $statement->execute();*/
 
                     }else{
                         echo "Your file is too big!";

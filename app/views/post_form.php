@@ -6,10 +6,10 @@
       <form action="<?php echo BASE_URL; ?>/app/add_post.php" method="POST" enctype="multipart/form-data">
        <h1 class="display-4 text-center mb-4">Write a new blog post</h1>
         <div class="form-group">
-          <input type="text" class="form-control" name="post_title" placeholder="Title here">
+          <input type="text" class="form-control" name="post_title" placeholder="Post title">
         </div>
         <div class="form-group">
-          <textarea class="form-control" rows="5" name="post_content" placeholder="Post here"></textarea>
+          <textarea class="form-control" rows="5" name="post_content" placeholder="Post content"></textarea>
         </div>
         <!-- La till denna div för att testa få in bild och post i samma formulär-->
         <div class="form-group">

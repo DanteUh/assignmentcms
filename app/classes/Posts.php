@@ -1,4 +1,5 @@
 <?php
+include 'Images.php';
 
 class Posts
 {
@@ -29,35 +30,41 @@ class Posts
   public function addPost()
   {
 
-    $_SESSION['msg_post'] = '';
-    $_SESSION['success'] = '';
+      $_SESSION['msg_post'] = '';
+      $_SESSION['success'] = '';
 
 
     // Checks if the user has typed in both fields
     if(!empty($_POST['post_title']) && !empty($_POST['post_content'])){
-    // prepare pdo with info for values to be inserted into posts table
-    $statement = $this->pdo->prepare("
-      INSERT INTO posts (post_title, post_content, user_id)
-      VALUES (:post_title, :post_content, :user_id)
+
+
+      //Creates a new pdo-object and link it to the imageUpload-function
+      $image = new Images($this->pdo);
+      $image = $image->imageUpload();
+
+      // prepare pdo with info for values to be inserted into posts table
+      $statement = $this->pdo->prepare("
+      INSERT INTO posts (post_title, post_content, user_id, image)
+      VALUES (:post_title, :post_content, :user_id, :image)
     ");
 
     // execute statement with session and post values
     $statement->execute([
       ':post_title' => $_POST['post_title'],
       ':post_content' => $_POST['post_content'],
-      ':user_id' => $_SESSION['user_id']
+      ':user_id' => $_SESSION['user_id'],
+      ':image' => $image
 
     ]);
-    $_SESSION['success'] = 'Your post has now been posted!';
-    header('Location: /');
-
+      $_SESSION['success'] = 'Your post has now been posted!';
+      header('Location: /');
     }
     // If the user has not typed in the fields
     else {
-            $_SESSION['msg_post'] = 'Please write something before you post!';
-            header('Location: /new_post.php');
-        //  echo $_POST['error'];
-        }
+      $_SESSION['msg_post'] = 'Please write something before you post!';
+      header('Location: /new_post.php');
+      //  echo $_POST['error'];
+      }
   }
 
 

@@ -21,6 +21,11 @@
             <p class="lead">
               by <a href="#"><?php echo $data['username']; ?></a>
             </p>
+            <?php if(!empty($data['image'])): ?>
+              <div class="clipper">
+                <img class="img-fluid" src="<?php BASE_URL; ?>/app/uploads/<?php echo $data['image']; ?>"></img>
+              </div>
+            <?php endif; ?>
             <hr>
             <!-- Date/Time -->
             <p><span class="glyphicon glyphicon-time"></span>
