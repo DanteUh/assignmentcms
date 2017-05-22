@@ -11,7 +11,7 @@
 
   <!-- To check if there is a post on that page -->
   <main class="main-content mb-3">
-      <div class="container mt-5">
+      <div class="container mt-5 mx-2">
        <h2 class="display-4 text-center mb-5">Activity</h2>
 
         <!-- if there's not any posts in database -->
