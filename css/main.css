@@ -1,12 +1,7 @@
 .jumbotron {
   height: 450px;
   background: url(../pic/background.jpg) no-repeat center center;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
   background-size: cover; }
 
 .jumbotron .container {
   color: white; }
-
-/*# sourceMappingURL=main.css.map */
