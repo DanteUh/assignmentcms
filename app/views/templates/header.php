@@ -23,7 +23,7 @@
         <ul class="navbar-nav mr-auto mt-2 mt-md-0">
           <li class="nav-item">
             <?php if(!isset($_SESSION['loggedin'])): ?>
-            <a class="nav-link" href="<?PHP echo BASE_URL; ?>/login_user.php">Log Out</a>
+            <a class="nav-link" href="<?PHP echo BASE_URL; ?>/login_user.php">Log In</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="<?PHP echo BASE_URL; ?>/reg_user.php">Register</a>

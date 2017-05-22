@@ -10,7 +10,7 @@
           <input type="text" class="form-control" name="post_title" placeholder="Title goes here">
         </div>
         <div class="form-group">
-          <textarea class="form-control" rows="5" name="post_content" placeholder="Write whatever you like, but it has to be huggable ofcourse <3"></textarea>
+          <textarea class="form-control" rows="5" name="post_content" placeholder="Write whatever you like, but it has to be huggable of course <3"></textarea>
         </div>
         <!-- La till denna div för att testa få in bild och post i samma formulär-->
         <div class="form-group">
@@ -22,7 +22,7 @@
                 <?php echo $_SESSION['msg_post']; ?>
             </div>
         <?php endif; ?>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" name="upload" class="btn btn-primary mb-4">Submit</button>
       </form>
     </div>
   </div>
@@ -31,7 +31,7 @@
 <!--<div class="container mt-5 mb-5">
   <div class="row justify-content-center">
     <div class="col-sm-12 col-md-8">    
-      <form action="<?php echo BASE_URL; ?>/app/upload_image.php" method="post" enctype="multipart/form-data">
+      <form action="<?php //echo BASE_URL; ?>/app/upload_image.php" method="post" enctype="multipart/form-data">
           <div class="form-group">
             <label for="image">Select image to upload: </label><br>
             <input type="file" name="image"><br>

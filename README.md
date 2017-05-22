@@ -46,6 +46,11 @@ Vi har skapat en filstruktur som delar upp dataflödet i den del som användaren
 
 ## Saker att eventuellt vidareutveckla i koden
 
+* Lägga till möjlighet för användaren att kommentera
+* Lägga till en funktion som räknar likes
+* Lägga till en funktion som laddar upp bilder
+* Lite mer fördjupad error-hantering
+
 
 
 

@@ -32,6 +32,7 @@ class Posts
     $_SESSION['msg_post'] = '';
     $_SESSION['success'] = '';
 
+
     // Checks if the user has typed in both fields
     if(!empty($_POST['post_title']) && !empty($_POST['post_content'])){
     // prepare pdo with info for values to be inserted into posts table
@@ -63,14 +64,15 @@ class Posts
   //Function to update/edit a post
   public function updatePost()
   {
-    $_SESSION['msg_edit'] = '';
+
     $_SESSION['success'] = '';
     //Checks if the user has written anything in the title and content-fields
     if(!empty($_POST['post_title']) && !empty($_POST['post_content'])){
 
-    $id = $_POST['post_id'];
-    $title = $_POST['post_title'];
-    $content = $_POST['post_content'];
+      $id = $_POST['post_id'];
+      /*$post_id = $id;*/
+      $title = $_POST['post_title'];
+      $content = $_POST['post_content'];
 
     $statement = $this->pdo->prepare("
     UPDATE posts
@@ -89,7 +91,7 @@ class Posts
     //If user hasn't edited anything
     else {
             $_SESSION['msg_edit'] = 'Please, type in something in both fields.';
-            header('Location: /edit_post.php');
+            header('Location: /');   
         }  
   }
 

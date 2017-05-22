@@ -41,6 +41,15 @@
                     <?php $_SESSION['msg_post'] = ''; ?>
                   <?php endif; ?>
 
+                  <!-- Error-message is printed out if  -->
+                  <?php if(!empty($_SESSION['msg_edit'])): ?>
+                    <div class="alert alert-danger">
+                      <?php echo $_SESSION['msg_edit']; ?>
+                    </div>
+                    <?php $_SESSION['msg_edit'] = ''; ?>
+                  <?php endif; ?>
+
+
                   <div class="post-preview">
                     <a href="<?php echo BASE_URL; ?>/page.php?page=<?php echo $post['post_id']; ?>">
                       <h5 class="post-title"><?php echo $post['post_title']; ?></h5>
