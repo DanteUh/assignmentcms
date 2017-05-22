@@ -5,7 +5,7 @@
     <div class="jumbotron jumbotron-fluid">
       <div class="container text-center">
         <h1 class="display-3 justify-content-center mt-5">CUDDLY</h1>
-        <p class="lead">Probably the most "Huggable" blog CMS you have ever seen</p>
+        <p class="lead">A blog</p>
       </div>
     </div>
 

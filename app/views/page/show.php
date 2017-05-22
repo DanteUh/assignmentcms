@@ -21,6 +21,11 @@
             <p class="lead">
               by <a href="#"><?php echo $data['username']; ?></a>
             </p>
+            <?php if(!empty($data['image'])): ?>
+              <div class="clipper">
+                <img class="img-fluid" src="<?php BASE_URL; ?>/app/uploads/<?php echo $data['image']; ?>"></img>
+              </div>
+            <?php endif; ?>
             <hr>
             <!-- Date/Time -->
             <p><span class="glyphicon glyphicon-time"></span>
@@ -32,10 +37,6 @@
               <hr>
               <!-- Post Content -->
               <p class="lead"><?php echo $data['post_content']; ?></p>
-              <!-- <?php if($_SESSION == true): ?>
-                <form action="<?php echo BASE_URL; ?>/app/add_like.php?type=post&id=<?php echo $data['post_id']; ?>" method="POST">
-                  <button type="submit" class="btn btn-primary">Like</button>
-              <?php endif; ?> -->
               <?php if($_SESSION == true): ?>
                 <?php if($_SESSION['user_id'] == $data['user_id']): ?>
                   <a class="btn btn-primary" href="<?php echo BASE_URL; ?>/edit_post.php?id=<?php echo $data['post_id']; ?>">Edit post</a>
