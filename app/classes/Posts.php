@@ -48,13 +48,13 @@ class Posts
     ]);
     $_SESSION['success'] = 'Ditt blogginlägg är nu postat!';
     header('Location: /');
-    } 
+    }
     //Exekverar om användaren inte skrivit i alla input-fält
     else {
             $_SESSION['msg_post'] = 'Vänligen skriv några rader innan du skickar ditt inlägg.';
             header('Location: /new_post.php');
         //  echo $_POST['error'];
-        }  
+        }
   }
 
 
@@ -74,9 +74,9 @@ class Posts
     $content = $_POST['post_content'];
 
     $statement = $this->pdo->prepare("
-    UPDATE posts
-    SET post_title = :post_title, post_content = :post_content, updated_time = NOW()
-    WHERE post_id = :post_id
+      UPDATE posts
+      SET post_title = :post_title, post_content = :post_content, updated_time = NOW()
+      WHERE post_id = :post_id
     ");
 
     $statement->execute([
@@ -86,13 +86,13 @@ class Posts
     ]);
 
     header('Location: /');
-    } 
+    }
     //Exekverar om användaren inte skrivit i alla input-fält
     else {
             return $_POST['msg_post'] = 'Du har inte ändrat något i posten än.';
             header('Location: /edit_post.php');
 
-        }  
+        }
   }
 
 
