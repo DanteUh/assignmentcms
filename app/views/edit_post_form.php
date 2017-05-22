@@ -12,9 +12,14 @@
           <label for="exampleTextarea">Blog content</label>
           <textarea class="form-control" rows="5" name="post_content"><?php echo $post['post_content']; ?></textarea>
         </div>
-        <?php if(!empty($_POST['msg_post'])): ?>
+        <?php if(!empty($_SESSION['msg_edit'])): ?>
             <div class="alert alert-danger">
-                <?php echo $_POST['msg_post']; ?>
+                <?php echo $_SESSION['msg_edit']; ?>
+            </div>
+        <?php endif; ?>
+        <?php if(!empty($_SESSION['success'])): ?>
+            <div class="alert alert-success">
+                <?php echo $_SESSION['success']; ?>
             </div>
         <?php endif; ?>
         <input type="hidden" name="post_id" value="<?php echo $post['post_id']; ?>">
