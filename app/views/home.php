@@ -1,17 +1,17 @@
 
 <!-- I view visas alla posts utåt som hämtas från index.php -->
 <?php require VIEW_ROOT . '/templates/header.php'; ?>
-   
+
     <div class="jumbotron jumbotron-fluid">
       <div class="container text-center">
         <h1 class="display-3 justify-content-center mt-5">CUDDLY</h1>
-        <p class="lead">A blog</p>
+        <p class="lead">Simple CMS</p>
       </div>
     </div>
 
   <!-- To check if there is a post on that page -->
   <main class="main-content mb-3">
-      <div class="container mt-5">
+      <div class="container mt-5 mx-2">
        <h2 class="display-4 text-center mb-5">Activity</h2>
 
         <!-- if there's not any posts in database -->

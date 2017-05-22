@@ -28,14 +28,10 @@
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
       <div class="image-container d-flex justify-content-center">
-            <img class="" src="../../pic/register.png" alt="login-picture">
+        <img class="" src="../../pic/register.png" alt="login-picture">
       </div>
     </div>
   </div>
 </div>
 
-
 <?php require VIEW_ROOT . '/templates/footer.php'; ?>
-
-
-

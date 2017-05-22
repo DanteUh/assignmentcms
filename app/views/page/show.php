@@ -2,7 +2,7 @@
 <?php require VIEW_ROOT . '/templates/header.php'; ?>
 
 
-<div class="container mt-5">
+<div class="container mt-5 mx-auto">
   <?php if(!$data): ?>
     <div class="container">
       <div class="row justify-content-center">

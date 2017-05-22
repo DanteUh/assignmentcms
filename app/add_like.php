@@ -8,4 +8,3 @@ include 'classes/Likes.php';
 $like = new Likes($pdo);
 
 $like->add_like();
-

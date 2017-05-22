@@ -11,7 +11,11 @@
 
 .clipper {
   max-height: 250px;
-  max-width: 609px;
+  max-width: auto;
   overflow: hidden; }
+
+.contact-list {
+  display: flex;
+  display: inline-flex; }
 
 /*# sourceMappingURL=main.css.map */
