@@ -39,7 +39,7 @@ class Posts
   
 
       //Creates a new pdo-object and link it to the imageUpload-function
-      $image = new Images($pdo);
+      $image = new Images($this->pdo);
       $image = $image->imageUpload();
 
       // prepare pdo with info for values to be inserted into posts table
