@@ -3,7 +3,9 @@
 
 
 Av: Andreas Engström, Dante Ulinder och Anna Hallgren-Gribbe
-Kurs: CMS, PHP & MySQL 
+
+Kurs: CMS, PHP & MySQL
+ 
 FEND 16
 
 [Instruktioner](https://github.com/FEND16/cms-php-mysql/blob/master/group_assignment_simple_cms.md)
@@ -22,6 +24,7 @@ Vi har i denna uppgift byggt ett enklare CMS i PHP och MySQL. CMSet har följand
 * En användare i rollen som admin kan´även ta bort samtliga blogginlägg, men inte ändra andras.
 * Det finns även möjlighet att filtrera fram sina egna blogginlägg.
 * Samtlig funktionalitet är error-hanterad utifrån de error som kan uppstå. 
+* Användaren kan ladda upp en bild till sin post.
 
 
 ## Struktur av bloggbygget
@@ -48,7 +51,6 @@ Vi har skapat en filstruktur som delar upp dataflödet i den del som användaren
 
 * Lägga till möjlighet för användaren att kommentera
 * Lägga till en funktion som räknar likes
-* Lägga till en funktion som laddar upp bilder
 * Lite mer fördjupad error-hantering
 
 

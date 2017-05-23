@@ -39,20 +39,10 @@ class Images
                     $fileDestination = APP_ROOT .'/uploads/'.$fileNameNew;
                     move_uploaded_file($fileTmpName, $fileDestination);
                     return $fileNameNew;
-                    /*$img = "uploads/".$fileName;*/
-                    /*echo "<img height=\"200\" width=\"200\" src=\"$fileDestination\"/>";*/
-                    // prepare pdo with info for values to be inserted into posts table
-                    /*$statement = $this->pdo->prepare("
-                    INSERT INTO posts (image)
-                    VALUES ('$fileNameNew')
-                    ");
 
-                    $statement->bindParam('$fileNameNew', $_POST['image']);
-                    $statement->execute();*/
-
-                    }else{
-                        echo "Your file is too big!";
-                    }
+                }else{
+                    echo "Your file is too big!";
+                }
 
             }else{
                 echo "There was an error uploading your file!";
