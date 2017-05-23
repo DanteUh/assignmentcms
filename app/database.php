@@ -18,6 +18,12 @@ $options = [
 ];
 
 $pdo = new PDO(
-  "mysql:host=sql11.freemysqlhosting.net:3306;dbname=sql11172326;charset=utf8",
-  "sql11172326",
-  "qAuSUNvuFV", $options);
+"mysql:host=sql11.freemysqlhosting.net:3306;dbname=sql11172326;charset=utf8",
+"sql11172326",
+"qAuSUNvuFV", $options);
+
+
+ // $pdo = new PDO(
+ //  "mysql:host=localhost:8889;dbname=bloggis;charset=utf8",
+ //  "root",
+ //  "root", $options);
