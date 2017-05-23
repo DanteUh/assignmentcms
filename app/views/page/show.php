@@ -1,7 +1,6 @@
 
 <?php require VIEW_ROOT . '/templates/header.php'; ?>
 
-
 <div class="container mt-5 mx-auto">
   <?php if(!$data): ?>
     <div class="container">
@@ -45,10 +44,12 @@
                   <a class="del-post mr-2 btn btn-danger" href="<?php echo BASE_URL; ?>/delete_post.php?id=<?php echo $data['post_id']; ?>">Delete</a>
                 <?php endif; ?>
               <?php endif; ?>
-              <?php if($_SESSION == true): ?>
+
+              <?php if($_SESSION == true && $like == false): ?>
                 <form action="<?php echo BASE_URL; ?>/app/add_like.php?type=post&id=<?php echo $data['post_id']; ?>" method="POST">
                   <button type="submit" class="btn btn-primary mt-3">Like</button>
                 </form>
+              <?php elseif($_SESSION == true): ?>
                 <form action="<?php echo BASE_URL; ?>/app/delete_like.php?type=post&id=<?php echo $data['post_id']; ?>" method="POST">
                   <button type="submit" class="btn btn-danger mt-3">Remove Like</button>
                 </form>
