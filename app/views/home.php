@@ -22,7 +22,7 @@
           <!-- looping through all posts that $posts holds -->
             <?php foreach($posts as $post): ?>
               <div class="row mt-3">
-                <div class="">
+                <div class="col-12">
 
                   <!-- Success-message is printed out if  -->
                   <?php if(!empty($_SESSION['success'])): ?>

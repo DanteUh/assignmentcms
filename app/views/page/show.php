@@ -1,7 +1,6 @@
 
 <?php include VIEW_ROOT . '/templates/header.php'; ?>
 
-
 <div class="container mt-5 mx-auto">
   <?php if(!$data): ?>
     <div class="container">
@@ -39,23 +38,20 @@
                 </p>
                 <div class="btn-section">
                 <!-- Like and unlike buttons -->
-                <?php if($_SESSION == true): ?>
-                
+                <?php if($_SESSION == true && $like == false): ?>
+                  <span><?php echo $allTheLikes['COUNT(like_id)']; ?> Likes</span>
                   <form action="<?php echo BASE_URL; ?>/app/add_like.php?type=post&id=<?php echo $data['post_id']; ?>" method="POST">
-                 
                     <button type="submit" name='like-btn' class="btn btn-primary btn-sm mt-3" style="background-color:white; border-color: white;"><i class="material-icons" style="color:blue">thumb_up</i></button>
-                 
                   </form>
-                             
+                <?php elseif($_SESSION == true): ?>
+                  <span><?php echo $allTheLikes['COUNT(like_id)']; ?> Likes</span>
                   <form action="<?php echo BASE_URL; ?>/app/delete_like.php?type=post&id=<?php echo $data['post_id']; ?>" method="POST">
-            
                     <button type="submit" name='unlike-btn' class="btn btn-danger btn-sm mt-3" style="background-color:white; border-color: white;"><i class="material-icons" style="color:red">thumb_down</i></button>
-                  
-                  </form>              
+                  </form>
                 <?php endif; ?>
-                </div> 
-            </div
-        
+                </div>
+            </div>
+
 
             <hr>
 
@@ -69,6 +65,16 @@
                   <a class="del-post mr-2 btn btn-danger" href="<?php echo BASE_URL; ?>/delete_post.php?id=<?php echo $data['post_id']; ?>">Delete</a>
                 <?php endif; ?>
               <?php endif; ?>
+
+              <!-- <?php if($_SESSION == true && $like == false): ?>
+                <form action="<?php echo BASE_URL; ?>/app/add_like.php?type=post&id=<?php echo $data['post_id']; ?>" method="POST">
+                  <button type="submit" class="btn btn-primary mt-3">Like</button>
+                </form>
+              <?php elseif($_SESSION == true): ?>
+                <form action="<?php echo BASE_URL; ?>/app/delete_like.php?type=post&id=<?php echo $data['post_id']; ?>" method="POST">
+                  <button type="submit" class="btn btn-danger mt-3">Remove Like</button>
+                </form>
+              <?php endif; ?> -->
 
               <!-- Comments Form -->
               <div class="well mt-5">

@@ -10,7 +10,7 @@ class Likes
         //Checks data from statement in like_exists()
         if($this->like_exists()){
             //echo 'No mister!';
-            header('Location:' . BASE_URL . '../page.php?page=' . $_GET['post_id']);
+            header('Location: /page.php?page=' . $_GET['id']);
         }
         //if the like does not exist, insert a new like
         else{
@@ -21,10 +21,11 @@ class Likes
                 ':user_id' => $_SESSION['user_id'],
                 ':post_id' => $_GET['id']
             ]);
+            header('Location: /page.php?page=' . $_GET['id']);
         }
 
-        header('Location:' . BASE_URL . '../page.php?page=' . $_GET['post_id']);
     }
+    // header('Location:' . BASE_URL . '/page.php?page=' . $_GET['post_id']);
 
     public function delete_like() {
         if($this->like_exists()){
@@ -38,10 +39,10 @@ class Likes
                 ':post_id' => $_GET['id']
             ]);
 
-            header('Location:' . BASE_URL . '../page.php?page=' . $_GET['post_id']);
+            header('Location: /page.php?page=' . $_GET['id']);
         }
         else {
-            header('Location:' . BASE_URL . '../page.php?page=' . $_GET['post_id']);
+            header('Location: /page.php?page=' . $_GET['id']);
         }
     }
 
