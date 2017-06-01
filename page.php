@@ -2,9 +2,7 @@
 session_start();
 
 include 'app/database.php';
-//This is where the request of the page run
-//Om jag vill hämta ut bilderna från databasen och visa dem tillsammans med posts, gör jag en ny statement under eller kan jag 
-//hämta bilderna samtidigt som jag hämtar postsen i samma sql-query?
+//This is where the request of the page runs
 
 //Checks if pages with posts are empty
 if(empty($_GET['page'])){
@@ -31,6 +29,27 @@ if(empty($_GET['page'])){
   }
 }
 
+if($_SESSION == true){
+  $amountOfLikes = $pdo->prepare("
+    SELECT COUNT(like_id)
+    FROM likes
+    WHERE post_id = :post_id
+  ");
+  $amountOfLikes->execute([
+    ':post_id' => $_GET['page']
+  ]);
+  $allTheLikes = $amountOfLikes->fetch();
+  // var_dump($_SESSION);
+  $statement = $pdo->prepare("
+    SELECT * FROM likes
+    WHERE user_id = :user_id
+    AND post_id = :post_id");
+  $statement->execute([
+    ':user_id' => $_SESSION['user_id'],
+    ':post_id' => $_GET['page']
+  ]);
+  $like = $statement->fetch();
+}
 
 
 include VIEW_ROOT . '/page/show.php';

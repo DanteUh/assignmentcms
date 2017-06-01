@@ -1,5 +1,32 @@
 @import 'home';
 
 body {
-    
+
+}
+
+.clipper {
+	max-height: 250px;
+	max-width: auto;
+	overflow: hidden;
+}
+
+.contact-list{
+	display: flex;
+	display: inline-flex;
+}
+
+
+.material-icons {
+	
+}
+
+.like-time-section {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.btn-section {
+	display: inline-flex;
+	justify-content: space-between;
 }

@@ -1,7 +1,4 @@
-
-
 <?php require VIEW_ROOT . '/templates/header.php'; ?>
-
 
 <div class="container mt-5">
   <div class="row justify-content-center">
@@ -28,7 +25,4 @@
   </div>
 </div>
 
-
-
 <?php require VIEW_ROOT . '/templates/footer.php'; ?>
-
